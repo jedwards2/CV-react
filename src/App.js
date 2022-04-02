@@ -9,21 +9,28 @@ class App extends React.Component {
     this.state = {
       showEdit: true,
       showSubmit: false,
-      name: "",
-      email: "",
-      phone: "",
-      school: "",
-      degree: "",
-      date: "",
-      company: "",
-      position: "",
-      dateJoined: "",
-      dateLeft: "",
+      forms: {
+        name: "",
+        email: "",
+        phone: "",
+        school: "",
+        degree: "",
+        date: "",
+        company: "",
+        position: "",
+        dateJoined: "",
+        dateLeft: "",
+      },
     };
   }
   handleChange = (e, name) => {
     console.log("hi");
-    this.setState({ [name]: e.target.value });
+    this.setState({
+      forms: {
+        ...this.state.forms,
+        [name]: e.target.value,
+      },
+    });
     console.log(this.state);
   };
 
@@ -42,11 +49,10 @@ class App extends React.Component {
   };
 
   render() {
-    const keys = Object.keys(this.state);
-    keys.splice(0, 2);
+    const keys = Object.keys(this.state.forms);
     const formElements = keys.map((key) => (
       <div key={key}>
-        <h3>{`${key}: ${this.state[key]}`}</h3>
+        <h3>{`${key}: ${this.state.forms[key]}`}</h3>
       </div>
     ));
 
@@ -64,7 +70,10 @@ class App extends React.Component {
         )}
 
         {this.state.showEdit && (
-          <Form formElements={this.state} handleChange={this.handleChange} />
+          <Form
+            formElements={this.state.forms}
+            handleChange={this.handleChange}
+          />
         )}
         {this.state.showSubmit && formElements}
       </div>
