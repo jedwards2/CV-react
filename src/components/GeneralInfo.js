@@ -3,7 +3,8 @@ import React from "react";
 class GeneralInfo extends React.Component {
   render() {
     return (
-      <div>
+      <div className="info--div">
+        <h3>General Info</h3>
         <label htmlFor="nameInput">Name: </label>
         <input
           name="nameInput"

@@ -1,5 +1,6 @@
 import React from "react";
 import Form from "./components/Form";
+import "./App.css";
 
 class App extends React.Component {
   constructor() {
@@ -44,17 +45,24 @@ class App extends React.Component {
     const keys = Object.keys(this.state);
     keys.splice(0, 2);
     const formElements = keys.map((key) => (
-      <div key={key}>{`${key}: ${this.state[key]}`}</div>
+      <div key={key}>
+        <h3>{`${key}: ${this.state[key]}`}</h3>
+      </div>
     ));
 
     return (
       <div>
-        <button type="button" onClick={this.handleEdit}>
-          Edit CV
-        </button>
-        <button type="button" onClick={this.handleSubmit}>
-          Submit CV
-        </button>
+        {!this.state.showEdit && (
+          <button type="button" onClick={this.handleEdit}>
+            Edit CV
+          </button>
+        )}
+        {!this.state.showSubmit && (
+          <button type="button" onClick={this.handleSubmit}>
+            Submit CV
+          </button>
+        )}
+
         {this.state.showEdit && (
           <Form formElements={this.state} handleChange={this.handleChange} />
         )}

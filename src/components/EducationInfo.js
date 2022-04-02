@@ -3,7 +3,8 @@ import React from "react";
 class EducationlInfo extends React.Component {
   render() {
     return (
-      <div>
+      <div className="info--div">
+        <h3>Education Info</h3>
         <label htmlFor="schoolNameInput">School Name: </label>
         <input
           name="schoolNameInput"
